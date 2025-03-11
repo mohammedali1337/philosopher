@@ -1,6 +1,6 @@
 CC 		= cc 
 CFLAGS 	= -Wall -Wextra -Werror -lpthread
-SRC		= mandatory/main.c
+SRC		= main.c mandatory/parsing 
 OBJ		= $(SRC:.c=.o)
 NAME	= philo
 

@@ -6,11 +6,11 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 23:46:34 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/11 20:25:49 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/11 21:40:18 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../philo.h"
+#include "philo.h"
 
 int	main(int c, char **v)
 {
@@ -18,5 +18,7 @@ int	main(int c, char **v)
 	if (c != 5 && c != 6)
 		return (printf("Usage: ./philo number_of_philos time_to_die time_to_eat time_to_sleep [must_eat]\n"), 1);
 	if (!valide_input(v, &table))
-		return 1;
+		return (printf("invalide input \n"), 1);
+	init_table(&table);
+	start_simulation(&table);
 }

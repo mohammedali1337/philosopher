@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 00:39:38 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/11 20:31:16 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/11 21:37:46 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,6 @@ int valide_input(char **v, t_table *table)
     if (!ft_isdigit(v))
         return (0);
     if (!valide_number_of_philo(v, table))
-        return (1);
+        return (0);
     return 1;
 }

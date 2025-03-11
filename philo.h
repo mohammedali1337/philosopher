@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 19:55:34 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/11 01:07:56 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/11 21:03:56 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,37 @@
 
 typedef struct s_philo
 {
-    int             id;             // Philosopher ID (from 0 to N-1)
-    int             meals_eaten;     // Number of times the philosopher has eaten
-    long long       last_meal_time;  // Timestamp of the last meal
-    pthread_t       thread_id;       // Thread ID for the philosopher
-    pthread_mutex_t *left_fork;      // Pointer to the left fork mutex
-    pthread_mutex_t *right_fork;     // Pointer to the right fork mutex
+    int				id;
+    pthread_t		thread;
+    long long		last_meal_time; // الوقت لي كلا فيه آخر مرة
+    int				meals_eaten;    // عدد المرات لي كلا
+    pthread_mutex_t	*left_fork;
+    pthread_mutex_t	*right_fork;
+    struct s_table	*table;         // إشارة للطاولة باش الفيلسوف يقدر يوصل للمعلومات العامة
 }   t_philo;
 
+typedef struct s_table
+{
+    int				num_philos;     // عدد الفلاسفة
+    int				time_to_die;
+    int				time_to_eat;
+    int				time_to_sleep;
+    int				must_eat_count; // عدد المرات لي خاص الفيلسوف ياكلها
+
+    long long		start_time;     // وقت بداية المحاكاة
+    int				is_dead;        // متغير كيحدد واش شي فيلسوف مات
+
+    pthread_mutex_t	*forks;         // مصفوفة ديال Mutexes (كل وحدة تمثل شوكة)
+    pthread_mutex_t	write_mutex;    // Mutex باش نمنع الكتابة المتزامنة
+    pthread_mutex_t	death_mutex;    // Mutex باش نتحكم في حالة الموت
+
+    t_philo			*philos;        // مصفوفة ديال الفلاسفة
+}   t_table;
 
 // number_of_philosophers time_to_die time_to_eat time_to_sleep
 // [number_of_times_each_philosopher_must_eat]
 
 
-int valide_input(char **v, t_philo *philo);
+int valide_input(char **v, t_table *table);
+int    init_table(t_table *table);
 # endif
