@@ -1,7 +1,7 @@
 CC 		= cc 
 CFLAGS 	= -Wall -Wextra -Werror
 LDFLAGS	= -lpthread
-SRC		= mandatory/parsing.c mandatory/philo_utils.c main.c
+SRC		= mandatory/parsing.c mandatory/philo_utils.c mandatory/philo_utils_2.c main.c
 OBJ		= $(SRC:%.c=%.o)
 NAME	= philo
 

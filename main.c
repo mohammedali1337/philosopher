@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 23:46:34 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/12 02:09:54 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/12 02:32:44 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,4 @@ int	main(int c, char **v)
 		return (printf("invalide input \n"), 1);
 	init_table(&table);
 	start_simulation(&table);
-	eat(&table);
 }

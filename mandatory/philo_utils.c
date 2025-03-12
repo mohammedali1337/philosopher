@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 00:51:37 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/12 02:21:03 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/12 02:37:19 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,12 @@ void    *philo_routine(void *arg)
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-	printf("philosopher %d is thinking... \n", philo->id);
+	while (1)
+	{
+		eat(philo);
+		sleeping(philo);
+		thinking(philo);
+	}
 	return (NULL);
 }
 
@@ -56,23 +61,3 @@ int start_simulation(t_table *table)
 	return (1);
 }
 
-long	get_time()
-{
-	struct timeval tv;
-	
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-}
-
-void    eat(t_philo *philo)
-{
-	pthread_mutex_lock(philo->left_fork);
-	printf("philosopher %d had taken a fork \n", philo->id);
-	pthread_mutex_lock(philo->right_fork);
-	printf("philosopher %d had taken a fork \n", philo->id);
-	printf("philosopher %d is eating \n", philo->id);
-	philo->last_meal_time = get_time();
-	unsleep(philo->table->time_to_eat * 1000);
-	pthread_mutex_unlock(philo->left_fork);
-	pthread_mutex_unlock(philo->right_fork);
-}
