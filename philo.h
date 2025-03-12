@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 19:55:34 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/12 00:49:36 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/12 02:16:41 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <limits.h>
+#include <sys/time.h>
 
 typedef struct s_philo
 {
