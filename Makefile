@@ -1,15 +1,16 @@
 CC 		= cc 
-CFLAGS 	= -Wall -Wextra -Werror -lpthread
-SRC		= main.c mandatory/parsing 
-OBJ		= $(SRC:.c=.o)
+CFLAGS 	= -Wall -Wextra -Werror
+LDFLAGS	= -lpthread
+SRC		= mandatory/parsing.c mandatory/philo_utils.c main.c
+OBJ		= $(SRC:%.c=%.o)
 NAME	= philo
 
 all:$(NAME)
 
 $(NAME):$(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJ) -o $(NAME)
 
-%.o:%.c philo.h
+%.o: %.c philo.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
