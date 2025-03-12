@@ -75,6 +75,10 @@ int	ft_atoi(const char *str)
 int valide_number_of_philo(char **v, t_table *table)
 {
     table->num_philos = ft_atoi(v[1]);
+	table->time_to_die = ft_atoi(v[2]);
+	table->time_to_eat = ft_atoi(v[3]);
+	table->time_to_sleep = ft_atoi(v[4]);
+	table->start_time = (v[5] != NULL) ? ft_atoi(v[5]) : -1;
     if (table->num_philos <= 0)
         return (0);
     return (1);
