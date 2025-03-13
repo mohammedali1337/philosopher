@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 23:46:34 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/12 23:49:17 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/13 02:26:35 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,6 @@ int	main(int c, char **v)
 	if (!valide_input(v, &table))
 		return (printf("invalide input \n"), 1);
 	init_philo(&table);
-	start_simulation(&table);
 	init_fork(&table);
+	start_simulation(&table);
 }

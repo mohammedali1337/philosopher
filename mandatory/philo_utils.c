@@ -6,11 +6,34 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 00:51:37 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/13 00:12:26 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/13 03:19:14 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+void monitoring(t_table *table)
+{
+	int i;
+
+	while (1)
+	{
+		i = 0;
+		while (i < table->num_philos)
+		{
+			pthread_mutex_lock(&table->death_mutex);
+			if (get_time() - table->philos[i].last_meal_time >= table->time_to_die)
+			{
+				printf("Philosopher %d died 💀\n", table->philos[i].id);
+				pthread_mutex_unlock(&table->death_mutex);
+				return;
+			}
+			pthread_mutex_unlock(&table->death_mutex);
+			i++;
+		}
+		usleep(1000); // نرتاح قليلاً قبل الفحص الموالي
+	}
+}
 
 int    init_philo(t_table *table)
 {
@@ -76,6 +99,15 @@ int start_simulation(t_table *table)
 			return (printf("failed creat thread \n"), 0);
 		i++;
 	}
+	i = 0;
+	monitoring(table);
+	while (i < table->num_philos)
+	{
+		if (pthread_join(table->philos[i].thread, NULL) != 0)
+			return (0);
+		i++;
+	}
+	stop_simulation(table);
 	return (1);
 }
 

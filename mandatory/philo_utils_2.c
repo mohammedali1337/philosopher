@@ -6,11 +6,24 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 02:24:46 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/12 02:38:27 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/13 03:18:03 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
+
+void stop_simulation(t_table *table)
+{
+	int i = 0;
+
+	while (i < table->num_philos)
+		pthread_mutex_destroy(&table->forks[i++]);
+	pthread_mutex_destroy(&table->write_mutex);
+	pthread_mutex_destroy(&table->death_mutex);
+	free(table->forks);
+	free(table->philos);
+}
+
 
 long	get_time()
 {
