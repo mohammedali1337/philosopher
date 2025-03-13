@@ -6,20 +6,20 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 00:51:37 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/12 02:37:19 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/13 00:12:26 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-int    init_table(t_table *table)
+int    init_philo(t_table *table)
 {
 	int i;
 
-	i = 0;
 	table->philos = malloc(sizeof(t_philo) * table->num_philos);
 	if (!table->philos)
 		return(0);
+	i = 0;
 	while (i < table->num_philos)
 	{
 		table->philos[i].id = i + 1;
@@ -30,6 +30,24 @@ int    init_table(t_table *table)
 		table->philos[i].table = table;
 		i++;
 	}
+	return (1);
+}
+
+int	init_fork(t_table *table)
+{
+	int	i;
+
+	table->forks = malloc(sizeof(pthread_mutex_t) * table->num_philos);
+	if (!table->forks)
+		return (0);
+	i = 0;
+	while (i < table->num_philos)
+	{
+		pthread_mutex_init(&table->forks[i], NULL);
+		i++;
+	}
+	pthread_mutex_init(&table->write_mutex, NULL);
+	pthread_mutex_init(&table->death_mutex, NULL);
 	return (1);
 }
 

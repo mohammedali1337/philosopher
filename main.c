@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 23:46:34 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/12 02:32:44 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/12 23:49:17 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int c, char **v)
 		return (printf("Usage: ./philo number_of_philos time_to_die time_to_eat time_to_sleep [must_eat]\n"), 1);
 	if (!valide_input(v, &table))
 		return (printf("invalide input \n"), 1);
-	init_table(&table);
+	init_philo(&table);
 	start_simulation(&table);
+	init_fork(&table);
 }
