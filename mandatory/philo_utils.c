@@ -6,33 +6,19 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 00:51:37 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/13 03:19:14 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/21 04:35:16 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../philo.h"
 
-void monitoring(t_table *table)
+void *monitoring(void *p)
 {
-	int i;
+	t_philo *philo;
 
-	while (1)
-	{
-		i = 0;
-		while (i < table->num_philos)
-		{
-			pthread_mutex_lock(&table->death_mutex);
-			if (get_time() - table->philos[i].last_meal_time >= table->time_to_die)
-			{
-				printf("Philosopher %d died 💀\n", table->philos[i].id);
-				pthread_mutex_unlock(&table->death_mutex);
-				return;
-			}
-			pthread_mutex_unlock(&table->death_mutex);
-			i++;
-		}
-		usleep(1000); // نرتاح قليلاً قبل الفحص الموالي
-	}
+	philo = (philo *) p;
+	if (!check_if_dead(philo))
+	
 }
 
 int    init_philo(t_table *table)
@@ -107,7 +93,6 @@ int start_simulation(t_table *table)
 			return (0);
 		i++;
 	}
-	stop_simulation(table);
 	return (1);
 }
 

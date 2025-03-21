@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 19:55:34 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/13 03:19:02 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/21 04:36:13 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ typedef struct s_table
 
 
 int valide_input(char **v, t_table *table);
+int	check_if_dead(t_philo *philos);
+int	check_if_all_ate(t_philo *philos);
 int    init_philo(t_table *table);
 int	init_fork(t_table *table);
 int start_simulation(t_table *table);

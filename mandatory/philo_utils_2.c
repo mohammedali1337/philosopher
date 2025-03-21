@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 02:24:46 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/13 03:18:03 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/21 02:55:44 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ void stop_simulation(t_table *table)
 {
 	int i = 0;
 
-	while (i < table->num_philos)
-		pthread_mutex_destroy(&table->forks[i++]);
 	pthread_mutex_destroy(&table->write_mutex);
 	pthread_mutex_destroy(&table->death_mutex);
+	while (i < table->num_philos)
+		pthread_mutex_destroy(&table->forks[i++]);
 	free(table->forks);
 	free(table->philos);
 }
