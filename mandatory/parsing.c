@@ -60,7 +60,7 @@ int	ft_atoi(const char *str)
 	sign = sign_spc((char *)str, &i);
 	while (((char *)str)[i] >= '0' && ((char *)str)[i] <= '9')
 	{
-		o = result;
+	o = result;
 		result = result * 10 + (((char *)str)[i++] - 48);
 		if ((result / 10) != o)
 		{

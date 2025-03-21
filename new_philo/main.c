@@ -38,7 +38,7 @@ int valide_input(int c, char **v, int i)
     return (0);
 }
 
-int init_table(t_table *table, char **v)
+int init_table(t_table *table, char **v, int i)
 {
     table->total_philos = ft_atoi(v[1]);
     table->death_time = ft_atoi(v[2]);
@@ -50,11 +50,17 @@ int init_table(t_table *table, char **v)
         table->required_meals = -1;
     table->death_status = 0;
     table->philo = malloc(sizeof(t_philo) * table->total_philos);
-    if (!table->philo)
+    table->forks = malloc(sizeof(pthread_mutex_t) * table->total_philos);
+    if (!table->philo || !table->forks)
         return (-1);
-    pthread_mutex_init(&table->death_status, NULL);
-    pthread_mutex_init(&table->output_mutex, NULL);
-    pthread_mutex_init(&table->meal_mutex, NULL);
+    pthread_mutex_init(&table->death_lock, NULL);
+    pthread_mutex_init(&table->output_lock, NULL);
+    pthread_mutex_init(&table->meal_lock, NULL);
+    while (i < table->total_philos)
+    {
+        pthread_mutex_init(&table->forks[i], NULL);
+        i++;
+    }
     return (0);
 }
 
@@ -68,7 +74,17 @@ void    init_philo(t_table *table, char **v)
         table->philo[i].philo_id = i + 1;
         table->philo[i].is_eating = 0;
         table->philo[i].meals_count = 0;
-        table->philo[i].simulation_start = 
+        table->philo[i].simulation_start = get_time();
+        table->philo[i].last_meal_time = get_time();
+        table->philo[i].output_lock = &table->output_lock;
+        table->philo[i].death_lock = &table->death_lock;
+        table->philo[i].meal_lock = &table->meal_lock;
+        table->philo[i].is_dead = &table->death_status;
+        table->philo[i].left_fork = &table->forks[i];
+        if (i == 0)
+            table->philo[i].right_fork = &table->forks[table->total_philos - 1];
+        else
+            table->philo->right_fork = &table->forks[i - 1];
    }
 }
 
@@ -78,7 +94,7 @@ int main(int c, char **v)
 
     if (!(valide_input(c, v, 1) == 0))
         return (1);
-    if (!(init_table(&table, v) == 0))
+    if (!(init_table(&table, v, 0) == 0))
         return (2);
     init_philo(&table, v);
 }

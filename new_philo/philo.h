@@ -44,9 +44,10 @@ typedef struct s_table
 	int			    sleep_duration;   // المدة الزمنية التي يستغرقها الفيلسوف في النوم
 	int				required_meals;   // عدد الوجبات المطلوبة قبل انتهاء المحاكاة
 	int				death_status;    // متغير يشير إلى ما إذا كان هناك فيلسوف قد مات (1 = ميت، 0 = لا أحد مات)
-	pthread_mutex_t	death_mutex;     // Mutex لحماية التعديل على `death_status`
-	pthread_mutex_t	meal_mutex;      // Mutex لحماية الوصول إلى بيانات الوجبات (مثل `last_meal_time`)
-	pthread_mutex_t	output_mutex;    // Mutex لحماية عمليات الكتابة على الشاشة (لمنع تداخل المخرجات)
+	pthread_mutex_t	death_lock;     // Mutex لحماية التعديل على `death_status`
+	pthread_mutex_t	meal_lock;      // Mutex لحماية الوصول إلى بيانات الوجبات (مثل `last_meal_time`)
+	pthread_mutex_t	output_lock;    // Mutex لحماية عمليات الكتابة على الشاشة (لمنع تداخل المخرجات)
+	pthread_mutex_t	*forks;  
 	t_philo	        *philo;   // مصفوفة تحتوي على جميع الفلاسفة المشاركين في المحاكاة
 }					t_table;
 
@@ -56,4 +57,7 @@ typedef struct s_table
 
 int	ft_atoi(const char *str);
 int	ft_isdigit(char **v);
+size_t get_time();
+size_t	ft_strlen(const char *s);
+void    *monitor(void *arg);
 # endif
