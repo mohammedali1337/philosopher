@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 19:55:34 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/21 06:31:45 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/21 23:02:54 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_philo
 	pthread_mutex_t	*output_lock;     // مؤشر إلى Mutex لحماية عمليات الكتابة في المخرجات
 	pthread_mutex_t	*death_lock;      // مؤشر إلى Mutex لحماية الوصول إلى حالة الوفاة
 	pthread_mutex_t	*meal_lock;       // مؤشر إلى Mutex لحماية وقت آخر وجبة أكلها الفيلسوف
+	struct s_table	*table;
 }					t_philo;
 
 typedef struct s_table
@@ -60,4 +61,12 @@ int	ft_isdigit(char **v);
 size_t get_time();
 size_t	ft_strlen(const char *s);
 void    *monitor(void *arg);
+int	 create_thread_philo(t_table *table);
+void    ft_print(char *str, t_philo *philo);
+int dead(t_philo *philo);
+int	ft_usleep(size_t ms);
+void	eat(t_philo *philo);
+void	thinking(t_philo *philo);
+void    sleeping(t_philo *philo);
+void des_free_all(char *str, t_table *table);
 # endif

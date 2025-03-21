@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 04:46:42 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/21 06:46:52 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/21 23:31:26 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int valide_input(int c, char **v, int i)
             return (write(2, "Invalide time to sleep\n", 24), -1);
         if (i == 5 && ft_atoi(v[i]) < 0 )
             return (write(2, "invalide number of times each philosopher must eat\n", 52), -1);
+        i++;
     }
     return (0);
 }
@@ -85,16 +86,21 @@ void    init_philo(t_table *table, char **v)
             table->philo[i].right_fork = &table->forks[table->total_philos - 1];
         else
             table->philo->right_fork = &table->forks[i - 1];
+        table->philo[i].table = table;
+        i++;
    }
 }
 
 int main(int c, char **v)
 {
     t_table table;
-
     if (!(valide_input(c, v, 1) == 0))
         return (1);
     if (!(init_table(&table, v, 0) == 0))
         return (2);
     init_philo(&table, v);
+    // printf("note this \n");
+    create_thread_philo(&table);
+    des_free_all(NULL, &table);
+    return (0);
 }
