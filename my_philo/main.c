@@ -20,6 +20,7 @@ int main(int c, char **v)
         write(2, "Usage: ./philo number_of_philos time_to_die time_to_eat time_to_sleep [must_eat]\n", 82);
         return (1);
     }
-    init_data(v, &table);
+    if (init_data(v, &table) != 0)
+        return (2);
     
 }

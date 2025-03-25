@@ -40,7 +40,10 @@ int init_forks(t_table *table)
     while (i < table->nbr_philo)
     {
         if (!(pthread_mutex_init(&table->forks[i].forks_mutex, NULL) == 0))
+        {
+            write(2, "pthread mutex init error \n", 27);
             return (-1);
+        }
         table->forks[i].id_fork = i;
         i++;
     }
@@ -81,8 +84,11 @@ int    init_philo(t_table *table)
 
 int    init_data(char **v, t_table *table)
 {
-    init_table(v, table);
-    init_forks(table);
-    init_philo(table);
+    if (init_table(v, table) != 0)
+        return (1);
+    if (init_forks(table))
+        return (1);
+    if (init_philo(table))
+        return (1);
     return (0);
 }
