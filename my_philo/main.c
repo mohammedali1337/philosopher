@@ -1,12 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 23:54:59 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/24 23:55:00 by mgarouj          ###   ########.fr       */
+/*   Created: 2025/03/24 20:56:04 by mgarouj           #+#    #+#             */
+/*   Updated: 2025/03/24 23:14:37 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "philo.h"
+//philo   number_of_philo   time_to_die   time_to_eat   time_to_sleep    num_of_meals
+int main(int c, char **v)
+{
+    t_table table;
+    if (c != 5 && c !=6)
+    {
+        write(2, "Usage: ./philo number_of_philos time_to_die time_to_eat time_to_sleep [must_eat]\n", 82);
+        return (1);
+    }
+    init_data(v, &table);
+    
+}
