@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:56:04 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/24 23:14:37 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/26 01:02:05 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int main(int c, char **v)
     }
     if (init_data(v, &table) != 0)
         return (2);
-    
+    if (creat_thread_philo(&table))
+        return (3);
 }

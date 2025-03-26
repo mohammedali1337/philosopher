@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 20:31:07 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/25 00:51:16 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/26 01:43:50 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,14 @@ typedef struct s_table
     long nbr_limit_meals;
     long start_simulation;
     bool end_simulation;
+    bool all_threads_ready;
+    pthread_mutex_t table_mutex;
     t_forks *forks;
     t_philo *philo;
 }   t_table;
 
 
-int valide_input(char **v, t_table *table);
+// int valide_input(char **v, t_table *table);
+int    creat_thread_philo(t_table *table);
 int    init_data(char **v, t_table *table);
 int	ft_atoi(const char *str);

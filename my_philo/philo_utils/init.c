@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 23:14:50 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/25 01:27:10 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/03/26 01:45:46 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 int init_table(char **v, t_table *table)
 {
     table->end_simulation = false;
+    table->all_threads_ready = false;
     table->nbr_philo= ft_atoi(v[1]);
     table->time_to_die = ft_atoi(v[2]);
     table->time_to_eat = ft_atoi(v[3]);
     table->time_to_sleep = ft_atoi(v[4]);
+    if ((pthread_mutex_init(&table->table_mutex) != 0))
+        return (-1);
     if (v[5])
         table->nbr_limit_meals= ft_atoi(v[5]);
     else
