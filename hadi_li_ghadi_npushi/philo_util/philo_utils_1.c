@@ -60,3 +60,17 @@ int	ft_atoi(const char *str)
 	}
 	return (result * sign);
 }
+
+void	ft_usleep(size_t milli)
+{
+	size_t	now;
+	size_t	elapsed;
+
+	now = ft_time_ms();
+	elapsed = ft_time_ms();
+	while (elapsed - now < milli)
+	{
+		usleep(333);
+		elapsed = ft_time_ms();
+	}
+}

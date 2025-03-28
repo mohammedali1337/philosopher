@@ -19,6 +19,14 @@ int init_philo(t_table *table)
     }
     return (1);
 }
+int stop_loop(t_table *table, int *i)
+{
+    pthread_mutex_lock(&table->table_mutex);
+    if (ft_time_ms() - table->philo[*i].last_meals_time >= table->time_to_die)
+    {
+        if (table->limit_meals != -1 && table->philo_fin_eat == table.phil)
+    }
+}
 
 int thread_creat(t_table *table)
 {
@@ -28,4 +36,7 @@ int thread_creat(t_table *table)
     while (i < table->num_of_philo)
         if (pthread_create(&table->philo[i].thread, NULL, routine, &table->philo[i++]))
             return(write(2, "pthread creat error\n", 21), 0);
+    i = 0;
+    while (i < table->num_of_philo && !stop_loop(table, &i))
+        i++;
 }
