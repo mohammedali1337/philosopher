@@ -47,5 +47,7 @@ int	ft_isdigit(int c);
 size_t    ft_time_ms(void);
 void	ft_usleep(size_t milli);
 void *routine(void *arg);
+int init_philo(t_table *table);
+int thread_creat(t_table *table);
 
 #endif

@@ -15,6 +15,7 @@ int print_status(char *str, t_philo *philo)
         return (pthread_mutex_unlock(&philo->table->table_mutex), 0);
     printf("%lu %d %s\n", ft_time_ms() - philo->table->start_time, philo->id_philo, str);
     pthread_mutex_unlock(&philo->table->table_mutex);
+    return (1);
 }
 
 int get_fork(t_philo *philo)
@@ -60,7 +61,7 @@ void *routine(void *arg)
         print_status("is eating", philo);
         ft_usleep(philo->table->time_to_eat);
         pthread_mutex_lock(&philo->table->table_mutex);
-        if (philo->meal_count = philo->table->limit_meals)
+        if (philo->meal_count == philo->table->limit_meals)
             philo->table->philo_fin_eat += (philo->table->limit_meals != -1);
         pthread_mutex_unlock(&philo->table->table_mutex);
         pthread_mutex_unlock(&philo->l_fork);
