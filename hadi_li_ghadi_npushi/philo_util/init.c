@@ -33,7 +33,7 @@ int stop_loop(t_table *table, int *i)
         }
         else
         {
-            table->evry_philo_eat = 1;
+            table->philo_die = 1;
             pthread_mutex_unlock(&table->philo[*i].l_fork);
             printf("%lu %d died\n", ft_time_ms() - table->start_time, table->philo[*i].id_philo);
         }

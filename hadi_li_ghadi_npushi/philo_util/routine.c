@@ -3,8 +3,9 @@
 int stop_simulation(t_philo *philo)
 {
     pthread_mutex_lock(&philo->table->table_mutex);
+    printf("philo_die : %d \n philo_eat : %d \n", philo->table->philo_die, philo->table->evry_philo_eat);
     if (philo->table->philo_die || philo->table->evry_philo_eat)
-        return (pthread_mutex_unlock(&philo->table->table_mutex), 1);
+        return (printf("----------------------------------------------this is work\n"), pthread_mutex_unlock(&philo->table->table_mutex), 1);
     return (pthread_mutex_unlock(&philo->table->table_mutex), 0);
 }
 
@@ -21,7 +22,7 @@ int print_status(char *str, t_philo *philo)
 int get_fork(t_philo *philo)
 {
     if (stop_simulation(philo))
-        return (0);
+    return (0);
     pthread_mutex_lock(&philo->l_fork);
     if (!print_status("has taking a fork", philo))
         return(pthread_mutex_unlock(&philo->l_fork), 0);

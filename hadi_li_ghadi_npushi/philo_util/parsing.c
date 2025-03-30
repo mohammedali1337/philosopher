@@ -53,11 +53,13 @@ int init_table(t_table *table, char **v)
         table->limit_meals = ft_atoi(v[5]);
     else 
         table->limit_meals = -1;
-    if (pthread_mutex_init(&table->table_mutex, NULL) != 0)
-        return (write(2, "error pthread mutex\n", 21), 0);
     table->philo = malloc(sizeof(t_philo) * table->num_of_philo);
     if (!table->philo)
         return (write(2, "failed allocat philo\n", 22), 0);
+    if (pthread_mutex_init(&table->table_mutex, NULL) != 0)
+        return (write(2, "error pthread mutex\n", 21), 0);
+    table->evry_philo_eat = 0;
+    table->philo_die = 0;
     table->start_time = ft_time_ms();
     return (1);
 }
