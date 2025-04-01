@@ -1,74 +1,77 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 23:46:34 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/03/21 04:39:42 by mgarouj          ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "philo.h"
 
-int	check_if_all_ate(t_philo *philos)
+
+/* 
+typedef struct s_philo {
+	int				nbr;
+	uint64_t		last_meal_beginning;
+	int				meals_count;
+	pthread_t		thread;
+	pthread_mutex_t	l_fork;
+	pthread_mutex_t	*r_fork;
+	struct s_args	*args;
+}	t_philo;
+
+typedef struct s_args {
+	int					philo_count;
+	int					time2die;
+	int					time2eat;
+	int					time2sleep;
+	int					max_meals;
+	int					total_finished;
+	bool				death_occured;
+	bool				everybody_full;
+	uint64_t			start_time;
+	pthread_mutex_t		sync_mutex;
+	struct s_philo		philos[200];
+}	t_args;
+*/
+
+/* 
+typedef struct s_philo
 {
-	int	i;
-	int	finished_eating;
+	pthread_t thread;
+	int id_philo;
+	size_t last_meals_time;
+	int meal_count;
+	pthread_mutex_t l_fork;
+	pthread_mutex_t *r_fork;
+	struct s_table *table;
+}	t_philo;
 
-	i = 0;
-	finished_eating = 0;
-	if (philos[0].table->time_to_eat == -1)
-		return (0);
-	while (i < philos[0].table->num_philos)
-	{
-		pthread_mutex_lock(philos[i].meal_lock);
-		if (philos[i].meals_eaten >= philos[i].num_times_to_eat)
-			finished_eating++;
-		pthread_mutex_unlock(philos[i].meal_lock);
-		i++;
-	}
-	if (finished_eating == philos[0].num_of_philos)
-	{
-		pthread_mutex_lock(philos[0].dead_lock);
-		*philos->dead = 1;
-		pthread_mutex_unlock(philos[0].dead_lock);
-		return (1);
-	}
-	return (0);
-}
-
-int	check_if_dead(t_philo *philos)
+typedef struct s_table
 {
-	int	i;
+	int             num_of_philo;
+	int             time_to_die;
+	int             time_to_eat;
+	int             time_to_sleep;
+	int             limit_meals;
+	int             philo_fin_eat;
+	int             philo_die;
+	int             evry_philo_eat;
+	size_t          start_time;
+	pthread_mutex_t table_mutex;
+	t_philo *philo;-
+}   t_table;
 
-	i = 0;
-	while (i < philos[0].num_of_philos)
-	{
-		if (philosopher_dead(&philos[i], philos[i].time_to_die))
-		{
-			print_message("died", &philos[i], philos[i].id);
-			pthread_mutex_lock(philos[0].dead_lock);
-			*philos->dead = 1;
-			pthread_mutex_unlock(philos[0].dead_lock);
-			return (1);
-		}
-		i++;
-	}
-	return (0);
-}
+*/
 
-int	main(int c, char **v)
+void f(){system("leaks a.out");}
+
+int main(int c, char **v)
 {
-	t_table table;
-
-	if (c != 5 && c != 6)
-		return (printf("Usage: ./philo number_of_philos time_to_die time_to_eat time_to_sleep [must_eat]\n"), 1);
-	if (!valide_input(v, &table))
-		return (printf("invalide input \n"), 1);
-	init_philo(&table);
-	init_fork(&table);
-	start_simulation(&table);
-	stop_simulation(&table);
+    t_table table;
+    atexit(f);
+    
+    if (c != 5 && c != 6)
+        return (1);
+    if (!init_table(&table, v))
+        return (2);
+    if (!init_philo(&table))
+        return (3);
+    if (!thread_creat(&table))
+        return (4);
+    // printf("not this \n");
+	free(table.philo);
+    return (0);
 }

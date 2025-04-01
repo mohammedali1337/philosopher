@@ -3,9 +3,8 @@
 int stop_simulation(t_philo *philo)
 {
     pthread_mutex_lock(&philo->table->table_mutex);
-    printf("philo_die : %d \n philo_eat : %d \n", philo->table->philo_die, philo->table->evry_philo_eat);
     if (philo->table->philo_die || philo->table->evry_philo_eat)
-        return (printf("----------------------------------------------this is work\n"), pthread_mutex_unlock(&philo->table->table_mutex), 1);
+        return (pthread_mutex_unlock(&philo->table->table_mutex), 1);
     return (pthread_mutex_unlock(&philo->table->table_mutex), 0);
 }
 
