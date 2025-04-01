@@ -14,7 +14,7 @@
 
 typedef struct s_philo
 {
-	pthread_t thread;
+	pthread_t thread; 
 	int id_philo;
 	size_t last_meals_time;
 	int meal_count;

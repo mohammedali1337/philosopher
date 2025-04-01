@@ -56,7 +56,7 @@ typedef struct s_table
 
 */
 
-void f(){system("leaks a.out");}
+void f(){system("leaks philo");}
 
 int main(int c, char **v)
 {

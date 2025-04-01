@@ -23,7 +23,7 @@ int init_philo(t_table *table)
 int stop_loop(t_table *table, int *i)
 {
     pthread_mutex_lock(&table->table_mutex);
-    if (ft_time_ms() - table->philo[*i].last_meals_time >= table->time_to_die || table->philo_fin_eat == table->num_of_philo)
+    if (ft_time_ms() - table->philo[*i].last_meals_time >= (size_t)table->time_to_die || table->philo_fin_eat == table->num_of_philo)
     {
         if (table->limit_meals != -1 && table->philo_fin_eat == table->num_of_philo)
         {
