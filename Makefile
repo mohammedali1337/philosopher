@@ -1,16 +1,12 @@
-# Compiler and flags
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror 
 LDFLAGS = -pthread
-
-# Source files
 SRC_DIR = philo_util
 SRCS    = $(SRC_DIR)/init.c \
           $(SRC_DIR)/parsing.c \
           $(SRC_DIR)/philo_utils_1.c \
           $(SRC_DIR)/routine.c \
           main.c
-
 OBJS    = $(SRCS:.c=.o)
 NAME    = philo
 
@@ -30,5 +26,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re

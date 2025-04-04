@@ -14,14 +14,14 @@
 
 typedef struct s_philo
 {
-	pthread_t thread; 
-	int id_philo;
-	size_t last_meals_time;
-	int meal_count;
-	pthread_mutex_t l_fork;
-	pthread_mutex_t *r_fork;
-	struct s_table *table;
-}	t_philo;
+	pthread_t		thread; 
+	int				id_philo;
+	size_t			last_meals_time;
+	int				meal_count;
+	pthread_mutex_t	l_fork;
+	pthread_mutex_t	*r_fork;
+	struct s_table	*table;
+}					t_philo;
 
 typedef struct s_table
 {
@@ -35,19 +35,18 @@ typedef struct s_table
 	int             evry_philo_eat;
 	size_t          start_time;
 	pthread_mutex_t table_mutex;
-	t_philo *philo;
-}   t_table;
+	t_philo 		*philo;
+}   				t_table;
 
 
-//lib 
 int	ft_atoi(const char *str);
 size_t	ft_strlen(const char *s);
-int init_table(t_table *table, char **v);
+int	init_table(t_table *table, char **v);
 int	ft_isdigit(int c);
-size_t    ft_time_ms(void);
+size_t	ft_time_ms(void);
 void	ft_usleep(size_t milli);
-void *routine(void *arg);
-int init_philo(t_table *table);
-int thread_creat(t_table *table);
+void	*routine(void *arg);
+int	init_philo(t_table *table);
+int	thread_creat(t_table *table);
 
 #endif
