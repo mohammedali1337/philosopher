@@ -37,7 +37,7 @@ static int	sign_spc(char *str, int *skip)
 	return (sign);
 }
 
-int	ft_atoi(const char *str)
+long	ft_atoi(const char *str)
 {
 	int			i;
 	int			sign;
@@ -51,12 +51,8 @@ int	ft_atoi(const char *str)
 	{
 		o = result;
 		result = result * 10 + (((char *)str)[i++] - 48);
-		if ((result / 10) != o)
-		{
-			if (sign > 0)
-				return (-1);
-			return (0);
-		}
+		if (result < o)
+			return (-1);
 	}
 	return (result * sign);
 }

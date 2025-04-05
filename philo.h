@@ -38,7 +38,7 @@ typedef struct s_table
 }   				t_table;
 
 
-int	ft_atoi(const char *str);
+long	ft_atoi(const char *str);
 size_t	ft_strlen(const char *s);
 int	init_table(t_table *table, char **v);
 int	ft_isdigit(int c);

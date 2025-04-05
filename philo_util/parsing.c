@@ -65,6 +65,6 @@ int init_table(t_table *table, char **v)
 	table->philo_die = 0;
 	table->start_time = ft_time_ms();
 	if (!check_int_max(table))
-		return (write(2, "the argument greater than int max\n", 35), 0);
+		return (write(2, "error: argument exceeds INT_MAX\n", 32), 0);
 	return (1);
 }
