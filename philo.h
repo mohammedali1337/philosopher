@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/06 09:51:21 by mgarouj           #+#    #+#             */
+/*   Updated: 2025/04/06 09:54:12 by mgarouj          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 
@@ -10,10 +22,9 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-
 typedef struct s_philo
 {
-	pthread_t		thread; 
+	pthread_t		thread;
 	int				id_philo;
 	size_t			last_meals_time;
 	int				meal_count;
@@ -24,28 +35,27 @@ typedef struct s_philo
 
 typedef struct s_table
 {
-	int             num_of_philo;
-	int             time_to_die;
-	int             time_to_eat;
-	int             time_to_sleep;
-	int             limit_meals;
-	int             philo_fin_eat;
-	int             philo_die;
-	int             evry_philo_eat;
-	size_t          start_time;
-	pthread_mutex_t table_mutex;
-	t_philo 		*philo;
-}   				t_table;
-
+	int				num_of_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				limit_meals;
+	int				philo_fin_eat;
+	int				philo_die;
+	int				evry_philo_eat;
+	size_t			start_time;
+	pthread_mutex_t	table_mutex;
+	t_philo			*philo;
+}					t_table;
 
 long	ft_atoi(const char *str);
 size_t	ft_strlen(const char *s);
-int	init_table(t_table *table, char **v);
-int	ft_isdigit(int c);
+int		init_table(t_table *table, char **v);
+int		ft_isdigit(int c);
 size_t	ft_time_ms(void);
 void	ft_usleep(size_t milli);
 void	*routine(void *arg);
-int	init_philo(t_table *table);
-int	thread_creat(t_table *table);
+int		init_philo(t_table *table);
+int		thread_creat(t_table *table);
 
 #endif
