@@ -70,7 +70,7 @@ int	init_table(t_table *table, char **v)
 			return (write(2, "argument not valide \n", 22), 0);
 	init_ndes(table, v);
 	if (table->num_of_philo > 200)
-		return (write(2, "num of philo error\n", 20), 0);
+		return (write(2, "argument not valide \n", 22), 0);
 	if (v[5])
 		table->limit_meals = ft_atoi(v[5]);
 	else
@@ -84,6 +84,6 @@ int	init_table(t_table *table, char **v)
 	table->philo_die = 0;
 	table->start_time = ft_time_ms();
 	if (!check_int_max(table))
-		return (write(2, "error: argument exceeds INT_MAX\n", 32), 0);
+		return (write(2, "argument not valide \n", 22), 0);
 	return (1);
 }

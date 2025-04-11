@@ -52,7 +52,7 @@ int	thinking_sleeping(t_philo *philo)
 	if (!print_status("is sleeping", philo))
 		return (0);
 	ft_usleep(philo->table->time_to_sleep);
-	if (!print_status("is eating", philo))
+	if (!print_status("is thinking", philo))
 		return (0);
 	return (1);
 }
