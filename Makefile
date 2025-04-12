@@ -1,16 +1,20 @@
 CC      = cc
 CFLAGS  = -Wall -Wextra -Werror 
 LDFLAGS = -pthread
-SRC_DIR = philo_util
+
+SRC_MND = philo
+SRC_DIR = $(SRC_MND)/philo_util
+
 SRCS    = $(SRC_DIR)/init.c \
           $(SRC_DIR)/parsing.c \
           $(SRC_DIR)/philo_utils_1.c \
           $(SRC_DIR)/routine.c \
-          main.c
-OBJS    = $(SRCS:.c=.o)
-NAME    = philo
+          $(SRC_MND)/main.c
 
-# Rules
+OBJS    = $(SRCS:.c=.o)
+NAME    = philo/philo
+
+
 all: $(NAME)
 
 $(NAME): $(OBJS)
@@ -26,3 +30,4 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
