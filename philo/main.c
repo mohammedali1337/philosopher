@@ -17,7 +17,7 @@ int	main(int c, char **v)
 	t_table	table;
 
 	if (c != 5 && c != 6)
-		return (1);
+		return (write(2, "invalide argument\n", 19), 1);
 	if (!init_table(&table, v))
 		return (2);
 	if (!init_philo(&table))

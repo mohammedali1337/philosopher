@@ -87,7 +87,9 @@ int	thread_creat(t_table *table)
 	}
 	i = 0;
 	while (i < table->num_of_philo && !stop_loop(table, &i))
+	{
 		i++;
+	}
 	i = 0;
 	while (i < table->num_of_philo)
 		pthread_join(table->philo[i++].thread, NULL);
