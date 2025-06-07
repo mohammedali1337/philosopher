@@ -21,6 +21,7 @@ int	init_philo(t_table *table)
 	{
 		table->philo[i].id_philo = i + 1;
 		table->philo[i].last_meals_time = table->start_time;
+		table->philo[i].meal_count = 0;
 		if (pthread_mutex_init(&table->philo[i].l_fork, NULL) != 0)
 			return (write(2, "pthread mutex init failed\n", 27), 0);
 		if (i + 1 == table->num_of_philo)
