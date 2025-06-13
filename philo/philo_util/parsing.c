@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:38:13 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/04/12 13:58:02 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/13 14:08:04 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	init_ndes(t_table *table, char **v)
 	table->time_to_die = ft_atoi (v[2]);
 	table->time_to_eat = ft_atoi(v[3]);
 	table->time_to_sleep = ft_atoi(v[4]);
+	table->philo_fin_eat = 0;
 }
 
 int	init_table(t_table *table, char **v)

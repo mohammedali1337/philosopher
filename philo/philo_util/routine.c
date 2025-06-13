@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:47:31 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/04/06 09:50:47 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/13 14:10:34 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	*routine(void *arg)
 			break ;
 		pthread_mutex_lock(&philo->table->table_mutex);
 		philo->meal_count++;
-		// printf("----------num of philo = %d ---- meal = %d \n", philo->id_philo, philo->meal_count);// remove
 		philo->last_meals_time = ft_time_ms();
 		pthread_mutex_unlock(&philo->table->table_mutex);
 		print_status("is eating", philo);
