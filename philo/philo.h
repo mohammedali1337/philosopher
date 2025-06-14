@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:51:21 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/04/06 09:54:12 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/14 14:04:08 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 # include <stdio.h>
 # include <limits.h>
-# include <string.h> 
-# include <stdint.h> 
+# include <string.h>
+# include <stdint.h>
 # include <stdlib.h>
 # include <pthread.h>
 # include <sys/time.h>

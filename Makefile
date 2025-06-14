@@ -1,5 +1,5 @@
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -fsanitize=address -g
+CFLAGS  = -Wall -Wextra -Werror
 LDFLAGS = -pthread
 
 SRC_MND = philo
@@ -13,7 +13,6 @@ SRCS    = $(SRC_DIR)/init.c \
 
 OBJS    = $(SRCS:.c=.o)
 NAME    = philo/philo
-
 
 all: $(NAME)
 
@@ -30,4 +29,3 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-

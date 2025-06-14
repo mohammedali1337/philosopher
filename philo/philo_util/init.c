@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 12:16:18 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/13 13:50:56 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/14 16:25:04 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	init_philo(t_table *table)
 
 int	fin_or_dead(t_table *table, int *i)
 {
-	// printf("philo fin eat = %d \n num of meals = %d \n", table->evry_philo_eat, table->philo[0].meal_count)
 	if (ft_time_ms() - table->philo[*i].last_meals_time
 		>= (size_t)table->time_to_die
 		|| table->philo_fin_eat == table->num_of_philo)
@@ -44,7 +43,7 @@ int	fin_or_dead(t_table *table, int *i)
 	return (0);
 }
 
-int	stop_loop(t_table *table, int *i)
+int	monitor(t_table *table, int *i)
 {
 	pthread_mutex_lock(&table->table_mutex);
 	if (fin_or_dead(table, i))
@@ -88,7 +87,7 @@ int	thread_creat(t_table *table)
 		i++;
 	}
 	i = 0;
-	while (i < table->num_of_philo && !stop_loop(table, &i))
+	while (i < table->num_of_philo && !monitor(table, &i))
 	{
 		i++;
 	}
