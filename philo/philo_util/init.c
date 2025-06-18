@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 12:16:18 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/14 16:25:04 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/18 11:53:45 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,13 +72,21 @@ int	monitor(t_table *table, int *i)
 	return (0);
 }
 
+void	philo_of_one(t_table *table)
+{
+	printf("%lu %d has taking a fork\n", ft_time_ms() - table->start_time, 1);
+	ft_usleep(table->time_to_die);
+	if (ft_time_ms() - table->start_time >= (size_t)table->time_to_die)
+		printf("%d 1 died\n", table->time_to_die);
+}
+
 int	thread_creat(t_table *table)
 {
 	int	i;
 
 	i = 0;
 	if (table->num_of_philo == 1)
-		return (printf("%lu 1 died\n", ft_time_ms() - table->start_time), 1);
+		return (philo_of_one(table), 1);
 	while (i < table->num_of_philo)
 	{
 		if (pthread_create(&table->philo[i].thread,
