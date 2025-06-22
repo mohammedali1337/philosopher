@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 12:16:18 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/18 11:53:45 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/22 17:34:27 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	init_philo(t_table *table)
 int	fin_or_dead(t_table *table, int *i)
 {
 	if (ft_time_ms() - table->philo[*i].last_meals_time
-		>= (size_t)table->time_to_die
+		> (size_t)table->time_to_die
 		|| table->philo_fin_eat == table->num_of_philo)
 		return (1);
 	return (0);
