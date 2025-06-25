@@ -1,26 +1,26 @@
 CC      = cc
-CFLAGS  = -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS  = -Wall -Wextra -Werror
 LDFLAGS = -pthread
 
 SRC_MND = philo
-SRC_DIR = $(SRC_MND)/philo_util
+SRC_DIR = philo_util
 
 SRCS    = $(SRC_DIR)/init.c \
           $(SRC_DIR)/parsing.c \
           $(SRC_DIR)/mutex_error.c \
           $(SRC_DIR)/philo_utils_1.c \
           $(SRC_DIR)/routine.c \
-          $(SRC_MND)/main.c
+          main.c
 
 OBJS    = $(SRCS:.c=.o)
-NAME    = philo/philo
+NAME    = philo
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(LDFLAGS)
 
-%.o: %.c philo/philo.h
+%.o: %.c philo.h
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:

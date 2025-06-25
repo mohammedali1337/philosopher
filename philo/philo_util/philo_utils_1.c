@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:46:31 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/25 18:22:14 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/25 19:08:50 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,13 @@ void	ft_usleep(size_t milli, t_table *table)
 	elapsed = ft_time_ms();
 	while (elapsed - now < milli)
 	{
+		pthread_mutex_lock(&table->table_mutex);
 		if (table->philo_die)
+		{
+			pthread_mutex_unlock(&table->table_mutex);
 			break ;
+		}
+		pthread_mutex_unlock(&table->table_mutex);
 		usleep(333);
 		elapsed = ft_time_ms();
 	}

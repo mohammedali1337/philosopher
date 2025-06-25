@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:51:21 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/25 18:54:35 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/25 20:54:28 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,9 @@ int		init_philo(t_table *table);
 int		thread_creat(t_table *table);
 void	ft_destroy_mutex(t_table *table, int flag, int i, int print);
 void	ft_destroy_thread(t_table *table);
+int		monitor(t_table *table, int *i);
+void	unlock_mutex(t_philo *philo);
+void	one_philo(t_philo *philo);
+int		print_status(char *str, t_philo *philo);
 
 #endif

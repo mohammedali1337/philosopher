@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:47:31 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/25 17:56:48 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/25 22:18:35 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	*routine(void *arg)
 		ft_usleep(10, philo->table);
 	while (1)
 	{
+		if (philo->table->num_of_philo == 1)
+			return (one_philo(philo), NULL);
 		if (!get_fork(philo))
 			break ;
 		pthread_mutex_lock(&philo->table->table_mutex);
@@ -79,9 +81,7 @@ void	*routine(void *arg)
 		pthread_mutex_lock(&philo->table->table_mutex);
 		if (philo->meal_count == philo->table->limit_meals)
 			philo->table->philo_fin_eat += (philo->table->limit_meals != -1);
-		pthread_mutex_unlock(&philo->table->table_mutex);
-		pthread_mutex_unlock(&philo->l_fork);
-		pthread_mutex_unlock(philo->r_fork);
+		unlock_mutex(philo);
 		if (!thinking_sleeping(philo))
 			break ;
 	}
