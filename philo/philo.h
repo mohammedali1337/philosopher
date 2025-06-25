@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:51:21 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/25 16:06:28 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/25 18:54:35 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ size_t	ft_strlen(const char *s);
 int		init_table(t_table *table, char **v);
 int		ft_isdigit(int c);
 size_t	ft_time_ms(void);
-void	ft_usleep(size_t milli);
+void	ft_usleep(size_t milli, t_table *table);
 void	*routine(void *arg);
 int		init_philo(t_table *table);
 int		thread_creat(t_table *table);

@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:47:31 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/25 16:07:14 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/25 17:56:48 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	thinking_sleeping(t_philo *philo)
 		return (0);
 	if (stop_simulation(philo))
 		return (0);
-	ft_usleep(philo->table->time_to_sleep);
+	ft_usleep(philo->table->time_to_sleep, philo->table);
 	if (!print_status("is thinking", philo))
 		return (0);
 	return (1);
@@ -65,7 +65,7 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	if (!(philo->id_philo % 2))
-		ft_usleep(10);
+		ft_usleep(10, philo->table);
 	while (1)
 	{
 		if (!get_fork(philo))
@@ -75,7 +75,7 @@ void	*routine(void *arg)
 		philo->last_meals_time = ft_time_ms();
 		pthread_mutex_unlock(&philo->table->table_mutex);
 		print_status("is eating", philo);
-		ft_usleep(philo->table->time_to_eat);
+		ft_usleep(philo->table->time_to_eat, philo->table);
 		pthread_mutex_lock(&philo->table->table_mutex);
 		if (philo->meal_count == philo->table->limit_meals)
 			philo->table->philo_fin_eat += (philo->table->limit_meals != -1);

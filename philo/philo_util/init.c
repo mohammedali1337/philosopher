@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 12:16:18 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/25 15:42:28 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/25 18:55:22 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	monitor(t_table *table, int *i)
 void	philo_of_one(t_table *table)
 {
 	printf("%lu %d has taking a fork\n", ft_time_ms() - table->start_time, 1);
-	ft_usleep(table->time_to_die);
+	ft_usleep(table->time_to_die, table);
 	if (ft_time_ms() - table->start_time >= (size_t)table->time_to_die)
 		printf("%d 1 died\n", table->time_to_die);
 }

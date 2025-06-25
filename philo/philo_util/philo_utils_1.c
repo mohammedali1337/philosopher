@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:46:31 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/25 16:05:37 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/25 18:22:14 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ long	ft_atoi(const char *str)
 	return (result * sign);
 }
 
-void	ft_usleep(size_t milli)
+void	ft_usleep(size_t milli, t_table *table)
 {
 	size_t	now;
 	size_t	elapsed;
@@ -77,6 +77,8 @@ void	ft_usleep(size_t milli)
 	elapsed = ft_time_ms();
 	while (elapsed - now < milli)
 	{
+		if (table->philo_die)
+			break ;
 		usleep(333);
 		elapsed = ft_time_ms();
 	}
