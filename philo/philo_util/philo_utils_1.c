@@ -73,7 +73,6 @@ void	ft_usleep(size_t milli)
 	size_t	now;
 	size_t	elapsed;
 
-	printf("---------------------usleep khedaammm %ld \n", milli);
 	now = ft_time_ms();
 	elapsed = ft_time_ms();
 	while (elapsed - now < milli)
