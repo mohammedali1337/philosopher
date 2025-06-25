@@ -6,13 +6,12 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:51:21 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/25 22:29:27 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/25 22:33:27 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
-
 
 # include <stdio.h>
 # include <limits.h>
