@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:47:31 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/14 17:10:48 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/25 16:07:14 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ int	get_fork(t_philo *philo)
 int	thinking_sleeping(t_philo *philo)
 {
 	if (!print_status("is sleeping", philo))
+		return (0);
+	if (stop_simulation(philo))
 		return (0);
 	ft_usleep(philo->table->time_to_sleep);
 	if (!print_status("is thinking", philo))

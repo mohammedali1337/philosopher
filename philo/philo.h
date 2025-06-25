@@ -6,7 +6,7 @@
 /*   By: mgarouj <mgarouj@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 09:51:21 by mgarouj           #+#    #+#             */
-/*   Updated: 2025/06/19 22:07:49 by mgarouj          ###   ########.fr       */
+/*   Updated: 2025/06/25 16:06:28 by mgarouj          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_usleep(size_t milli);
 void	*routine(void *arg);
 int		init_philo(t_table *table);
 int		thread_creat(t_table *table);
-void    ft_destroy_mutex(t_table *table, int flag, int i, int print);
-void    ft_destroy_thread(t_table *table);
+void	ft_destroy_mutex(t_table *table, int flag, int i, int print);
+void	ft_destroy_thread(t_table *table);
 
 #endif
