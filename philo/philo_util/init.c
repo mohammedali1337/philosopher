@@ -23,7 +23,7 @@ int	init_philo(t_table *table)
 		table->philo[i].last_meals_time = table->start_time;
 		table->philo[i].meal_count = 0;
 		if (pthread_mutex_init(&table->philo[i].l_fork, NULL) != 0)
-			return (write(2, "pthread mutex init failed\n", 27), 0);
+			return (ft_destroy_mutex(table, 'f', i, 1), 0);
 		if (i + 1 == table->num_of_philo)
 			table->philo[i].r_fork = &table->philo[0].l_fork;
 		else
@@ -91,7 +91,7 @@ int	thread_creat(t_table *table)
 	{
 		if (pthread_create(&table->philo[i].thread,
 				NULL, routine, &table->philo[i]))
-			return (write(2, "pthread creat error\n", 21), 0);
+			return (ft_destroy_thread(table), 0);
 		i++;
 	}
 	i = 0;

@@ -57,5 +57,7 @@ void	ft_usleep(size_t milli);
 void	*routine(void *arg);
 int		init_philo(t_table *table);
 int		thread_creat(t_table *table);
+void    ft_destroy_mutex(t_table *table, int flag, int i, int print);
+void    ft_destroy_thread(t_table *table);
 
 #endif

@@ -85,6 +85,6 @@ int	init_table(t_table *table, char **v)
 	table->philo_die = 0;
 	table->start_time = ft_time_ms();
 	if (!check_int_max(table))
-		return (free(table->philo), write(2, "argument not valide \n", 22), 0);
+		return (ft_destroy_mutex(table, 't', 1, 1), 0);
 	return (1);
 }
