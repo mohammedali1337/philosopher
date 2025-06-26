@@ -62,6 +62,7 @@ int	thinking_sleeping(t_philo *philo)
 void	*routine(void *arg)
 {
 	t_philo	*philo;
+	int i = 0;
 
 	philo = (t_philo *)arg;
 	if (!(philo->id_philo % 2))
@@ -74,16 +75,18 @@ void	*routine(void *arg)
 			break ;
 		pthread_mutex_lock(&philo->table->table_mutex);
 		philo->meal_count++;
+		if (i != 0)
+			philo->last_meals_time = ft_time_ms();
 		pthread_mutex_unlock(&philo->table->table_mutex);
 		print_status("is eating", philo);
 		ft_usleep(philo->table->time_to_eat, philo->table);
-		philo->last_meals_time = ft_time_ms();
 		pthread_mutex_lock(&philo->table->table_mutex);
 		if (philo->meal_count == philo->table->limit_meals)
-		philo->table->philo_fin_eat += (philo->table->limit_meals != -1);
-		unlock_mutex(philo);
+			philo->table->philo_fin_eat += (philo->table->limit_meals != -1);
+				unlock_mutex(philo);
 		if (!thinking_sleeping(philo))
 			break ;
+		i++;
 	}
 	return (NULL);
 }

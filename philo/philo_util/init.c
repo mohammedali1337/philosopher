@@ -20,7 +20,7 @@ int	init_philo(t_table *table)
 	while (i < table->num_of_philo)
 	{
 		table->philo[i].id_philo = i + 1;
-		table->philo[i].last_meals_time = table->start_time;
+		table->philo[i].last_meals_time = ft_time_ms();
 		table->philo[i].meal_count = 0;
 		if (pthread_mutex_init(&table->philo[i].l_fork, NULL) != 0)
 			return (ft_destroy_mutex(table, 'f', i, 1), 0);
@@ -80,7 +80,7 @@ int	thread_creat(t_table *table)
 	while (i < table->num_of_philo)
 	{
 		if (pthread_create(&table->philo[i].thread,
-				NULL, routine, &table->philo[i]))
+				NULL, routine, &table->philo[i]) == -1)
 			return (ft_destroy_thread(table), 0);
 		i++;
 	}
@@ -93,5 +93,6 @@ int	thread_creat(t_table *table)
 	i = 0;
 	while (i < table->num_of_philo)
 		pthread_mutex_destroy(&table->philo[i++].l_fork);
+	pthread_mutex_destroy(&table->table_mutex);
 	return (1);
 }

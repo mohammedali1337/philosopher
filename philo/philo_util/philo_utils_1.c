@@ -84,7 +84,7 @@ void	ft_usleep(size_t milli, t_table *table)
 			break ;
 		}
 		pthread_mutex_unlock(&table->table_mutex);
-		usleep(333);
+		usleep(100);
 		elapsed = ft_time_ms();
 	}
 }
